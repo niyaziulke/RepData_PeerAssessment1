@@ -33,12 +33,12 @@ if(!file.exists("activity.csv")){
 
 
 ```r
-sumTable <- aggregate(steps ~ date, activityTable, FUN=sum)
+sumTable <- aggregate(steps ~ date,na.exclude( activityTable),FUN=sum)
 stepVec <- sumTable$steps
 hist(stepVec,xlab = "Total steps on a day",main="Histogram of total steps per day",col = "blue")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-115-1.png)<!-- -->
+![](PA1_template_files/figure-html/unnamed-chunk-2-1.png)<!-- -->
 
 ***
 
@@ -46,7 +46,7 @@ Calculate *mean* and *average* of total steps per day.
   
 
 ```r
-mean(stepVec)
+mean(stepVec,na.rm = TRUE)
 ```
 
 ```
@@ -54,7 +54,7 @@ mean(stepVec)
 ```
 
 ```r
-median(stepVec)
+median(stepVec,na.rm = TRUE)
 ```
 
 ```
@@ -76,7 +76,7 @@ meanTable <- aggregate(steps ~ interval, activityTable, FUN=mean)
 plot(x=meanTable$interval,y=meanTable$steps,xlab = "Interval", ylab= "Average total steps",type="l")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-117-1.png)<!-- -->
+![](PA1_template_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
   
   
   
@@ -116,8 +116,10 @@ table(naSubset$date)
 
 ```
 ## 
-## 2012-10-01 2012-10-08 2012-11-01 2012-11-04 2012-11-09 2012-11-10 2012-11-14 2012-11-30 
-##        288        288        288        288        288        288        288        288
+## 2012-10-01 2012-10-08 2012-11-01 2012-11-04 2012-11-09 2012-11-10 2012-11-14 
+##        288        288        288        288        288        288        288 
+## 2012-11-30 
+##        288
 ```
 There is no data from 8 days and the other days don't have any missing values.
 Replace each NA value with the mean number of steps taken in its interval.
@@ -137,7 +139,7 @@ stepVec <- sumTable$steps
 hist(stepVec,xlab = "Total steps on a day",main="Histogram of total steps per day",col = "red")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-122-1.png)<!-- -->
+![](PA1_template_files/figure-html/unnamed-chunk-9-1.png)<!-- -->
 
 The increase in frequency of days with 10000-15000 steps is evident. It is because missing values are imputed with the mean values.
 
@@ -173,6 +175,6 @@ Draw a barplot of days and mean number of total steps taken on each day.
 barplot( names.arg =dayNames,height=meanDays$steps,col =factor(meanDays$dayFactor),ylab = "Average number of steps taken")  
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-124-1.png)<!-- -->
+![](PA1_template_files/figure-html/unnamed-chunk-11-1.png)<!-- -->
 
 Evidently, people take more steps at weekends.
