@@ -116,10 +116,8 @@ table(naSubset$date)
 
 ```
 ## 
-## 2012-10-01 2012-10-08 2012-11-01 2012-11-04 2012-11-09 2012-11-10 2012-11-14 
-##        288        288        288        288        288        288        288 
-## 2012-11-30 
-##        288
+## 2012-10-01 2012-10-08 2012-11-01 2012-11-04 2012-11-09 2012-11-10 2012-11-14 2012-11-30 
+##        288        288        288        288        288        288        288        288
 ```
 There is no data from 8 days and the other days don't have any missing values.
 Replace each NA value with the mean number of steps taken in its interval.

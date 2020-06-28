@@ -1,5 +1,11 @@
-#Reproducible Research: Peer Assessment 1'
-
+---
+title: 'Reproducible Research: Peer Assessment 1'
+output:
+  html_document:
+    keep_md: yes
+  pdf_document: default
+  word_document: default
+---
 
 
   
@@ -27,7 +33,7 @@ if(!file.exists("activity.csv")){
   
 
 ```{r}
-sumTable <- aggregate(steps ~ date,na.exclude(activityTable),FUN=sum)
+sumTable <- aggregate(steps ~ date,na.exclude( activityTable),FUN=sum)
 stepVec <- sumTable$steps
 hist(stepVec,xlab = "Total steps on a day",main="Histogram of total steps per day",col = "blue")
 ```
@@ -37,8 +43,8 @@ hist(stepVec,xlab = "Total steps on a day",main="Histogram of total steps per da
 Calculate *mean* and *average* of total steps per day.
   
 ```{r}
-mean(stepVec)
-median(stepVec)
+mean(stepVec,na.rm = TRUE)
+median(stepVec,na.rm = TRUE)
 ```
   
 
